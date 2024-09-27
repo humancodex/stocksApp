@@ -10,29 +10,27 @@ const Tab = createMaterialTopTabNavigator();
 
 const StockDetailTabs = ({ symbol }: { symbol: string }) => {
   return (
-
-      <StyledCard>
-        <Tab.Navigator
-          initialRouteName="Diario"
-          screenOptions={{
-            tabBarStyle: {
-              backgroundColor: '#ffffff',
-            },
-            tabBarIndicatorStyle: {
-              backgroundColor: '#000000',
-            },
-            tabBarLabelStyle: {
-              fontSize: 14,
-              fontWeight: 'bold',
-            },
-          }}>
-          <Tab.Screen name="Diario">{() => <DailyChartScreen symbol={symbol} />}</Tab.Screen>
-          <Tab.Screen name="Semanal">{() => <WeeklyChartScreen symbol={symbol} />}</Tab.Screen>
-          <Tab.Screen name="Mensual">{() => <MonthlyChartScreen symbol={symbol} />}</Tab.Screen>
-          <Tab.Screen name="Anual">{() => <YearlyChartScreen symbol={symbol} />}</Tab.Screen>
-        </Tab.Navigator>
-      </StyledCard>
-
+    <StyledCard>
+      <Tab.Navigator
+        initialRouteName="Diario"
+        screenOptions={{
+          tabBarStyle: {
+            backgroundColor: '#ffffff',
+          },
+          tabBarIndicatorStyle: {
+            backgroundColor: '#000000',
+          },
+          tabBarLabelStyle: {
+            fontSize: 14,
+            fontWeight: 'bold',
+          },
+        }}>
+        <Tab.Screen name="8hs">{() => <YearlyChartScreen symbol={symbol} />}</Tab.Screen>
+        <Tab.Screen name="Diario">{() => <DailyChartScreen symbol={symbol} />}</Tab.Screen>
+        <Tab.Screen name="Semanal">{() => <WeeklyChartScreen symbol={symbol} />}</Tab.Screen>
+        <Tab.Screen name="Mensual">{() => <MonthlyChartScreen symbol={symbol} />}</Tab.Screen>
+      </Tab.Navigator>
+    </StyledCard>
   );
 };
 

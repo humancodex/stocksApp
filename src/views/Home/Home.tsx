@@ -1,50 +1,25 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  ListRenderItem,
-  RefreshControl,
-  ScrollView,
-} from 'react-native';
+// components/HomeScreen.tsx
+import React, { useState, useEffect, useCallback } from 'react';
+import { ActivityIndicator, FlatList, ListRenderItem, RefreshControl } from 'react-native';
 import { Input, Text, View, YStack, Card, Button } from 'tamagui';
-import axios from 'axios';
-
+import useFetchStocks from '../../hooks/useFetchStocks';
+import { Stock } from '../../types/Stocks';
 
 const ITEMS_PER_PAGE = 20;
 
-interface Stock {
-  symbol: string;
-  name: string;
-  currency: string;
-  type: string;
-}
-
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
-  const [stocks, setStocks] = useState<Stock[]>([]);
+  const { stocks, loading, error, fetchStocks } = useFetchStocks(
+    `https://api.twelvedata.com/stocks?source=docs&exchange=NYSE&apikey=${process.env.TWELVEDATA_API_KEY}`,
+  );
   const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
-  const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [nameSearch, setNameSearch] = useState('');
   const [symbolSearch, setSymbolSearch] = useState('');
   const [page, setPage] = useState(1);
 
-  const fetchStocks = useCallback(async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `https://api.twelvedata.com/stocks?source=docs&exchange=NYSE&apikey=${process.env.TWELVEDATA_API_KEY}`,
-      );
-      setStocks(response.data.data);
-      setFilteredStocks(response.data.data);
-    } catch (error) {
-      console.error('Error fetching stocks:', error);
-    }
-    setLoading(false);
-  }, []);
-
   useEffect(() => {
-    fetchStocks();
-  }, [fetchStocks]);
+    setFilteredStocks(stocks);
+  }, [stocks]);
 
   useEffect(() => {
     handleSearch();
