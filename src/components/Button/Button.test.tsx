@@ -4,7 +4,7 @@ import Button from './Button';
 
 describe('Button Component', () => {
   it('renders correctly with a title', () => {
-    const { root } = renderer.create(<Button title="Click Me" />);
+    const { root } = renderer.create(<Button title="Click" />);
     expect(root).toBeTruthy();
   });
 });
