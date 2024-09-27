@@ -28,8 +28,8 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
   const handleSearch = () => {
     const filtered = stocks.filter(
       stock =>
-        stock.name.toLowerCase().includes(nameSearch.toLowerCase()) &&
-        stock.symbol.toLowerCase().includes(symbolSearch.toLowerCase()),
+        stock?.name.toLowerCase().includes(nameSearch.toLowerCase()) &&
+        stock?.symbol.toLowerCase().includes(symbolSearch.toLowerCase()),
     );
     setFilteredStocks(filtered);
     setPage(1);
