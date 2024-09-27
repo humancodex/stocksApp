@@ -126,25 +126,14 @@ src/
    ```
 
 
-## 🥇 Libraries
-
-- [expo v50](https://docs.expo.dev/versions/v50.0.0)
-- [expo-asset](https://docs.expo.dev/versions/latest/sdk/asset/)
-- [expo-font](https://docs.expo.dev/versions/latest/sdk/font/)
-- [expo-image](https://docs.expo.dev/versions/latest/sdk/image/)
-- [expo-splash-screen](https://docs.expo.dev/versions/latest/sdk/splash-screen/)
-- [expo-status-bar](https://docs.expo.dev/versions/latest/sdk/status-bar/)
-- [react-navigation 6.x](https://github.com/react-navigation/react-navigation)
-- [redux-toolkit](https://redux-toolkit.js.org/)
-
-## 🥈 Libraries for development
+##  Libraries for development
 
 - [eslint](https://github.com/eslint/eslint)
 - [prettier](https://github.com/prettier/prettier)
 - [jest](https://jestjs.io/)
 - [lint-staged](https://github.com/okonet/lint-staged)
 
-## ☀️ Icons
+## Icons
 
 Expo provides a popular set of vector icons. Please search icons from [here](https://icons.expo.fyi/)
 
