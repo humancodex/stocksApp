@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TWELVEDATA_API_KEY } from '@env';
 
 export type DataItem = {
   datetime: string;
@@ -18,7 +19,7 @@ export const fetchData = async (
         interval,
         start_date,
         end_date,
-        apikey: process.env.TWELVEDATA_API_KEY,
+        apikey: TWELVEDATA_API_KEY,
       },
     });
 

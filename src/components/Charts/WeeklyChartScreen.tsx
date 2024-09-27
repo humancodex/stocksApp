@@ -2,43 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { Stack, Text, styled } from 'tamagui';
-import axios from 'axios';
+import { fetchData } from '../../api/getStocksCharts';
 
 const screenWidth = Dimensions.get('window').width;
 
-type DataItem = {
-  datetime: string;
-  close: number; // Asegúrate de que sea un número
-};
+
 
 const DailyChartScreen = ({ symbol }: { symbol: string }) => {
   const [data, setData] = useState<{ x: number; y: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataFromApi = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('https://api.twelvedata.com/time_series', {
-          params: {
-            symbol,
-            interval: '1week',
-            start_date: '2024-09-01',
-            end_date: '2024-09-30',
-            apikey: process.env.TWELVEDATA_API_KEY,
-          },
-        });
-
-        if (response.data && response.data.values) {
-          const formattedData = response.data.values?.map((item: DataItem) => ({
-            x: new Date(item.datetime).getTime(),
-            y: Number(item.close),
-          }));
-          setData(formattedData);
-        } else {
-          throw new Error('Datos de respuesta inválidos o vacíos');
-        }
+        const formattedData = await fetchData(symbol, '1week');
+        setData(formattedData);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
         setError('No se pudieron obtener los datos');
@@ -47,7 +28,7 @@ const DailyChartScreen = ({ symbol }: { symbol: string }) => {
       }
     };
 
-    fetchData();
+    fetchDataFromApi();
   }, [symbol]);
 
 

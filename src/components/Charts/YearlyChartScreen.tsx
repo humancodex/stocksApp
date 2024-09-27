@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { Stack, Text, styled } from 'tamagui';
-import axios from 'axios';
+import { fetchData } from '../../api/getStocksCharts';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -21,29 +21,11 @@ const DailyChartScreen = ({ symbol }: { symbol: string }) => {
 
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataFromApi = async () => {
       try {
         setLoading(true);
-              const response = await axios.get('https://api.twelvedata.com/time_series', {
-                params: {
-                  symbol,
-                  interval: '8h',
-                  start_date: '2024-09-01',
-                  end_date: '2024-09-30',
-                  apikey: process.env.TWELVEDATA_API_KEY,
-                },
-              });
-
-        console.log('response on year ', response.data);
-        if (response.data && response.data.values) {
-          const formattedData = response.data.values?.map((item: DataItem) => ({
-            x: new Date(item.datetime).getTime(),
-            y: Number(item.close),
-          }));
-          setData(formattedData);
-        } else {
-          throw new Error('Datos de respuesta inválidos o vacíos');
-        }
+        const formattedData = await fetchData(symbol, '8h');
+        setData(formattedData);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
         setError('No se pudieron obtener los datos');
@@ -52,9 +34,8 @@ const DailyChartScreen = ({ symbol }: { symbol: string }) => {
       }
     };
 
-    fetchData();
+    fetchDataFromApi();
   }, [symbol]);
-
 
 
   if (loading) {
@@ -75,7 +56,7 @@ const DailyChartScreen = ({ symbol }: { symbol: string }) => {
 
   return (
     <Container>
-      <Title>Precios anuales de {symbol}</Title>
+      <Title>Precios cada 8hs de {symbol}</Title>
       <LineChart
         data={{
           labels: data.length > 0 ? data.map(item => new Date(item.x).toLocaleDateString()) : [],

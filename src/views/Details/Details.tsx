@@ -21,10 +21,10 @@ const ContainerLoader = styled(View, {
 });
 
 const Title = styled(Text, {
-  fontSize: 28, // Increased font size for better visibility
+  fontSize: 28,
   fontWeight: 'bold',
-  marginBottom: 15, // Increased margin for spacing
-  color: '#333', // Changed text color for better readability
+  marginBottom: 15,
+  color: '#333',
 });
 
 const StockDetailScreen = ({ route }: any) => {
