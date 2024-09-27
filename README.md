@@ -1,140 +1,124 @@
-<h1 align="center">
-  <img src='https://github.com/wataru-maeda/react-native-boilerplate/blob/main/__DELELE_ME__/banner.png' width='600'>
-</h1>
+# Expo Stock App
 
-<p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="React Native is released under the MIT license." />
-  <img src="https://github.com/wataru-maeda/react-native-boilerplate/actions/workflows/preview.yml/badge.svg" alt="" />
-  <img src="https://github.com/wataru-maeda/react-native-boilerplate/actions/workflows/test.yml/badge.svg" alt="" />
-  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
-</p>
+## Overview
 
-<p align="center">
-  <img src='https://github.com/wataru-maeda/react-native-boilerplate/blob/main/__DELELE_ME__/demo.gif' width='150px'>
-</p>
+The Expo Stock App is a mobile application built using React Native and Expo. It provides users with the ability to search for stocks by name or symbol and view detailed information about various publicly traded companies.
 
-<p align="center">
-  <a href="https://expo.dev/%40wataru/react-native-boilerplate?serviceType=eas&distribution=expo-go&scheme=exp%2Breact-native-boilerplate&channel=main&sdkVersion=50.0.0">
-    Demo
-  </a>
-</p>
+## Table of Contents
 
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
+- [Project Structure](#project-structure)
+- [Development](#development)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
-Say goodbye to time-consuming setup tasks like restructuring files, installing libraries, and crafting reusable components. Our project boilerplate is your solution to eliminate redundant work when starting from scratch. It includes only the most commonly-used libraries, so you can hit the ground running with a fully configured setup.
+## Features
 
-## 🗒️ Requirements
+- Search stocks by company name or stock symbol
+- View detailed stock information including currency and stock type
+- User-friendly interface with a bottom sheet for easy navigation
+- Responsive design for various mobile devices
 
-- [Node: 20.x](https://nodejs.org/en)
-- [Expo CLI](https://docs.expo.dev/more/expo-cli/)
+## Prerequisites
 
-## 🚀 Quick Start
+Before you begin, ensure you have met the following requirements:
 
-1. Download zip or click "Use this template"
-1. Install packages with `npm install` or `yarn install`
-1. Spin up dev environment with `npm run start` or `yarn run start`
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later) or Yarn (v1.22.0 or later)
+- Expo CLI (v4.0.0 or later)
+- iOS Simulator (for Mac users) or Android Studio (for Android development)
+- Expo Go app installed on your mobile device for testing
 
-## 🤖 What's included
+## Installation
 
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/expo-stock-app.git
+   cd expo-stock-app
+   ```
 
-<details>
-  <summary><b>Navigation</b></summary>
-  
-####
-Utilizes `react-navigation v6` for stack, tab, and drawer navigation configurations as the default setup.
-Flexibility in modifying navigation styles. For adjustments to the navigation style, refer to the implementation details in [Stack.tsx](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/navigator/stack/Stack.tsx), [Drawer.tsx](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/navigator/drawer/Drawer.tsx), and [Tab.tsx](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/navigator/tab/Tab.tsx).
+2. Install dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
 
-#### Simplified navigation structure customization:
-- To omit a navigation type, such as drawer navigation, simply remove the corresponding drawer file. Alterations to the navigation type can be effortlessly made by substituting the navigation configuration in [Navigator.tsx](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/navigator/Navigator.tsx#L5) with your preferred choice between tab or stack navigation.
+3. Set up environment variables:
+   - Copy `.env.example` to `.env.development`, `.env.production`, and `.env.test`
+   - Fill in the required environment variables in each file
 
-#### Dynamic navigation switching based on user status:
-  - Integration of login and signup functionality is crucial for apps requiring user authentication. The navigation scheme should adapt according to the user's authentication status.
-  - The [navigator](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/navigator/Navigator.tsx#L17-L22) allows for the configuration of distinct navigation paths contingent on whether the user is logged in or not.
+## Running the App
 
-</details>
+1. Start the Expo development server:
+   ```
+   expo start
+   ```
 
-<details>
-  <summary><b>Redux</b></summary>
+2. Run on a specific platform:
+   - iOS: `npm run ios` or `yarn ios`
+   - Android: `npm run android` or `yarn android`
+   - Web: `npm run web` or `yarn web`
 
-####
+3. Use the Expo Go app on your mobile device to scan the QR code displayed in the terminal or browser to run the app on your device.
 
-Redux Hooks are pre-configured for immediate use.
-- Learn how to set up Redux Hooks by reviewing [app.slice.ts](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/modules/app/app.slice.ts).
-- Discover the application of Redux Hooks in [Navigator.tsx](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/navigator/Navigator.tsx#L18).
-    
-Access all Redux modules within the [modules folder](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/modules).The boilerplate includes Redux Hooks integration for straightforward state management. For an illustration of module utilization, refer to [app.slice.ts](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/modules/app/app.slice.ts).
-- To create a new module, replicate [app.slice.ts](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/modules/app/app.slice.ts), rename it appropriately within the modules directory, and subsequently incorporate the module into the [store](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/utils/store.ts#L9). The process is designed to be straightforward and efficient.
+## Project Structure
 
-</details>
+```
+src/
+├── api/                  # API services and configurations
+├── components/           # Reusable React components
+├── hooks/                # Custom React hooks
+├── layouts/
+│   └── BottomSheetContents/  # Bottom sheet layout components
+├── modules/              # Feature-specific modules
+├── navigator/            # Navigation configuration
+├── theme/                # Styling and theme definitions
+├── utils/                # Utility functions and helpers
+├── views/                # Main screen components
+└── App.tsx               # Root component
+```
 
-<details>
-  <summary><b>Assets</b></summary>
+## Development
 
-####
+- Use `eslint` and `prettier` for code linting and formatting:
+  ```
+  npm run lint
+  npm run format
+  ```
 
-This project centralizes the management of assets, including images, icons, and fonts, within the [theme directory](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/src/theme). For seamless integration of new assets, ensure their importation into the designated files where they will be utilized. This approach facilitates streamlined access to all assets via the theme structure.
-To further optimize performance, asset preloading has been incorporated into the boilerplate. This setup also supports the use of SVG files, offering extensive flexibility in managing visual resources. Assets are made effortlessly accessible for implementation across the project by importing them directly from the theme.
+- Follow the React Native and Expo best practices for component development and state management.
 
+## Testing
 
-</details>
+- Run tests using Jest:
+  ```
+  npm test
+  ```
 
-<details>
-  <summary><b>Absolute Paths</b></summary>
+- Add unit tests for components and functions in `__tests__` directories.
 
-####
+## Deployment
 
-Navigating through complex project architectures with deeply nested folders often complicates the use of relative paths, potentially leading to errors. To alleviate this issue, our boilerplate simplifies the development process by facilitating the use of absolute paths. This means you can replace convoluted relative paths like `../../../components/Button` with straightforward references such as `components/Button` in your import statements.
-The implementation for this feature is configured within both the [babel.config.js](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/babel.config.js) and [tsconfig.json](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/tsconfig.json) files. These configurations ensure a hassle-free experience in utilizing absolute paths across your project, enhancing clarity and reducing the likelihood of path-related errors.
+1. Configure your `eas.json` file for different build profiles.
 
+2. Build the app for production:
+   ```
+   eas build --platform android
+   eas build --platform ios
+   ```
 
-</details>
+3. Submit to app stores:
+   ```
+   eas submit --platform android
+   eas submit --platform ios
+   ```
 
-<details>
-  <summary><b>Environment Variables</b></summary>
-
-####
-
-Environment variables can be defined within the respective files for different deployment stages: [.env.development](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/.env.development) for development, [.env.production](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/.env.production) for production, and [.env.test](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/.env.test) for test.
-- To spinup the project in a ***development*** environment, execute `npm run start:dev`. Conversely, for launching the project in a ***production***, use `npm run start`.
-- It is imperative to avoid storing sensitive information, such as private keys, within variables prefixed by `EXPO_PUBLIC_`. For comprehensive guidelines on securely managing sensitive data, refer to the recommendations provided in [storing sensitive info](https://reactnative.dev/docs/security#storing-sensitive-info).
-
-</details>
-
-<details>
-  <summary><b>[CI] Code formatting, linting and testing on pre-commit</b></summary>
-
-####
-
-- Configurations for Eslint, Prettier, and Jest have been meticulously established to ensure your code remains clean and adheres to best practices. Here's a breakdown of how these tools enhance your development workflow:
-1. Throughout the coding process, these integrated tools proactively scan and refine your code. Activating the 'Format on Save' feature further streamlines this process, automatically tidying your code with each save.
-2. Committing changes triggers a pre-commit script that meticulously checks, formats, and tests your code. This comprehensive review process ensures your contributions are both error-free and stylistically consistent.
-3. Successfully navigating through the stages of code verification, formatting, and testing empowers you to commit your changes with absolute confidence. You can rest assured knowing your code is not only efficient but also meets the highest standards of quality and reliability.
-
-
-</details>
-
-<details>
-  <summary><b>[CD] Release previews on Pull-Request</b></summary>
-
-####
-
-- When you've completed your work and need to share a preview with the QA team, our boilerplate automates the distribution process for you. Here's how it works:
-1. Whenever you create a pull request (PR) or merge, it automatically generates a preview channel in your Expo account.
-2. You don't need to run 'eas' commands every time you create a PR; the process is streamlined for you.
-3. The continuous delivery (CD) process is managed through the [preview.yml](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/.github/workflows/preview.yml) configuration file, which utilizes [expo-github-action](https://github.com/expo/expo-github-action).
-
-To set up the CD workflow, follow these steps:
-1. Create an `EXPO_TOKEN` in your Expo account. You can do this by visiting [this link](https://expo.dev/accounts/%5Baccount%5D/settings/access-tokens).
-2. In your GitHub repository, go to **Settings**, then navigate to **Secrets and variables** -> **Actions** -> **Add new repository secret**. Make sure to name the secret as `EXPO_TOKEN`.
-3. Update `name`, `slug`, `owner`, `projectId` and `url` in [app.json](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/app.json):
-4. Update in `name`, `slug`, `projectId`, `ios`, `android` in [app.config.ts](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/app.config.ts)
-6. After you push changes to the main branch, a new preview will be created automatically.
-
-
-</details>
-
-## 🧑‍💻 Need native code?
-
-To generate iOS and Android native code, you can run `npx expo prebuild` in the project's root directory. For more details and specific instructions, please refer to the [Expo documentation page](https://docs.expo.dev/workflow/prebuild/).
 
 ## 🥇 Libraries
 
@@ -159,7 +143,4 @@ To generate iOS and Android native code, you can run `npx expo prebuild` in the 
 Expo provides a popular set of vector icons. Please search icons from [here](https://icons.expo.fyi/)
 
 
-## 📓 Licence
-
-This project is available under the MIT license. See the [LICENSE](https://github.com/wataru-maeda/react-native-boilerplate/blob/main/LICENSE) file for more info.
 
