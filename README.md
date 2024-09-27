@@ -27,12 +27,12 @@ The Expo Stock App is a mobile application built using React Native and Expo. It
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
-React 18 utilizando hooks
-o ReactNative 0.74
-o Typescript
-o React-navigation
-o Expo 51
-o Deseable Tamagui
+- React 18 utilizando hooks
+- ReactNative 0.74
+- Typescript
+- React-navigation
+- Expo 51
+- Deseable Tamagui
 - Node.js (v14.0.0 or later)
 - npm (v6.0.0 or later) or bun (v1.22.0 or later)
 - Expo CLI (v4.0.0 or later)
